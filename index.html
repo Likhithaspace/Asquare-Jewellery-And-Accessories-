@@ -56,28 +56,23 @@ footer{background:var(--navy);color:var(--cream);text-align:center;padding:45px 
   <button class="lightbox-close" onclick="closeLightbox()">×</button>
   <img id="lightbox-image" src="" alt="Product preview">
 </div>
-
 <script>
 document.addEventListener('click', function(e) {
-  const img = e.target.closest('.photo-link img');
-  if (!img) return;
-
+  const link = e.target.closest('a.photo-link');
+  if (!link) return;
   e.preventDefault();
   e.stopPropagation();
-
+  const img = link.querySelector('img')
+  if (!img) return;
   document.getElementById('lightbox-image').src = img.src;
   document.getElementById('lightbox').classList.add('active');
-
 }, true);
-
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('active');
 }
-
 document.getElementById('lightbox').addEventListener('click', function(e) {
   if (e.target === this) closeLightbox();
 });
-
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeLightbox();
 });
