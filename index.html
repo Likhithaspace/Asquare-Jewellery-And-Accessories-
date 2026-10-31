@@ -20,68 +20,44 @@ header{height:86px;background:var(--navy);display:grid;grid-template-columns:1fr
 footer{background:var(--navy);color:var(--cream);text-align:center;padding:45px 20px}footer img{width:130px;max-height:60px;object-fit:contain}footer p{font-size:10px;line-height:2;color:var(--beige)}footer a{color:var(--beige);border-bottom:1px solid var(--gold)}
 @media(max-width:850px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.category-tile{height:240px}}
 @media(max-width:600px){header{height:72px;padding:0 5%}.header-logo{width:120px}.hero{min-height:430px;padding:55px 7%}.shop-by{padding:55px 5%}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.category-tile{height:205px}.tile-title{font-size:24px;left:12px;bottom:13px}.collection-section{padding:52px 4%}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-info{padding:11px 9px}.product-info h3{font-size:19px;min-height:44px}.wa-button{font-size:7px;padding:11px 5px}}
+
+/* ASQUARE product quick-view */
+.photo-link{display:block;cursor:zoom-in;position:relative}
+.photo-link:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.qv-backdrop{position:fixed;inset:0;background:rgba(7,5,22,.78);z-index:80;display:none;align-items:center;justify-content:center;padding:22px;backdrop-filter:blur(3px)}
+.qv-backdrop.is-open{display:flex}
+.qv-modal{position:relative;width:min(1120px,100%);max-height:min(90vh,900px);overflow:auto;background:var(--cream);border:1px solid #d8c6a5;border-radius:14px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);box-shadow:0 24px 80px #0005;color:var(--navy)}
+.qv-close{position:absolute;right:13px;top:10px;z-index:2;border:0;background:rgba(248,243,233,.9);color:var(--navy);font-size:30px;line-height:1;width:40px;height:40px;border-radius:50%;cursor:pointer}
+.qv-gallery{padding:22px 12px 22px 22px;min-width:0}
+.qv-main-image-wrap{height:clamp(320px,65vh,650px);background:#eee5d8;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.qv-main-image{width:100%;height:100%;object-fit:contain;cursor:zoom-in;transition:transform .25s}
+.qv-main-image.is-zoomed{object-fit:contain;transform:scale(1.45);cursor:zoom-out}
+.qv-gallery-note{text-align:center;color:var(--muted);font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin:10px 0 0}
+.qv-content{padding:35px 28px 26px 18px;min-width:0}
+.qv-title{font:500 clamp(27px,3vw,39px)/1.08 'Cormorant Garamond',serif;color:var(--navy);margin:0 38px 8px 0}
+.qv-price{font:500 24px 'Cormorant Garamond',serif;color:var(--gold);margin:0 0 16px}
+.qv-wa{display:block;text-align:center;background:var(--gold);color:var(--navy);padding:15px 12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:4px;margin-bottom:20px}
+.qv-wa:hover{background:var(--navy);color:var(--cream)}
+.qv-highlights{display:grid;grid-template-columns:1fr 1fr;gap:13px 12px;margin:0 0 19px;font-size:11px;line-height:1.55;color:var(--ink)}
+.qv-highlight{display:flex;align-items:center;gap:9px}.qv-highlight span:first-child{color:var(--gold);font-size:18px}
+.qv-rule{height:1px;background:linear-gradient(90deg,var(--gold),#e8dfd1);margin:17px 0}
+.qv-accordion{border-top:1px solid var(--line)}.qv-accordion details{border-bottom:1px solid var(--line)}
+.qv-accordion summary{list-style:none;cursor:pointer;padding:15px 2px;font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.qv-accordion summary::-webkit-details-marker{display:none}.qv-accordion summary:after{content:'+';font-size:20px;color:var(--gold);font-weight:400}.qv-accordion details[open] summary:after{content:'−'}
+.qv-accordion p,.qv-accordion li{font-size:11px;line-height:1.8;color:var(--muted)}.qv-accordion p{margin:0 0 14px}.qv-accordion ul{margin:0 0 15px;padding-left:18px}
+.qv-care-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:0 0 14px}.qv-care-item{background:#f1e8d9;border:1px solid #eee2d0;border-radius:5px;padding:10px 5px;text-align:center;font-size:9px;line-height:1.5;color:var(--navy)}.qv-care-item b{display:block;font-size:18px;color:var(--gold);font-weight:400;margin-bottom:5px}
+.qv-zoom-hint{font-size:9px;color:var(--muted);text-align:center;margin-top:8px}
+body.qv-lock{overflow:hidden}
+@media(max-width:700px){.qv-backdrop{padding:0;align-items:flex-end}.qv-modal{width:100%;max-height:94dvh;border-radius:16px 16px 0 0;grid-template-columns:1fr;grid-template-rows:auto auto}.qv-gallery{padding:14px 14px 0}.qv-main-image-wrap{height:min(42vh,390px)}.qv-content{padding:20px 18px 26px}.qv-title{font-size:30px}.qv-close{top:9px;right:9px}.qv-highlights{font-size:10px}.qv-care-grid{gap:4px}.qv-care-item{font-size:8px;padding:8px 3px}}
+
 </style>
 </head>
 <body>
-<style>
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.lightbox.active {
-  display: flex;
-}
-.lightbox img {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
-}
-.lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  color: white;
-  font-size: 35px;
-  background: none;
-  border: 0;
-}
-</style>
-  <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" onclick="closeLightbox()">×</button>
-  <img id="lightbox-image" src="" alt="Product preview">
-</div>
-<script>
-document.addEventListener('click', function(e) {
-  const link = e.target.closest('a.photo-link');
-  if (!link) return;
-  e.preventDefault();
-  e.stopPropagation();
-  const img = link.querySelector('img')
-  if (!img) return;
-  document.getElementById('lightbox-image').src = img.src;
-  document.getElementById('lightbox').classList.add('active');
-}, true);
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-}
-document.getElementById('lightbox').addEventListener('click', function(e) {
-  if (e.target === this) closeLightbox();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeLightbox();
-});
-</script>
 <div class="announcement">A little elegance, a lot of you · ASQUARE Jewellery &amp; Accessories</div>
 <header>
 <button class="menu-toggle" id="openMenu" aria-label="Open menu">☰</button>
 <a href="#home"><img class="header-logo" src="ASQUARE-logo.png" alt="ASQUARE Jewellery"></a>
-<a class="header-contact" href="https://wa.me/916301239070?text=Hi%20ASQUARE%21%20%F0%9F%92%99%20I%27m%20interested%20in%20your%20jewellery%20collection.%20Could%20you%20please%20share%20more%20details%3F" target="_blank">Enquire</a>
+<a class="header-contact" href="https://wa.me/916301239070" target="_blank">Enquire</a>
 </header>
 <div class="overlay" id="overlay"></div>
 <nav class="drawer" id="drawer"><button class="drawer-close" id="closeMenu" aria-label="Close menu">×</button><h2>ASQUARE</h2>
@@ -124,7 +100,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-02.jpg" target="_blank" aria-label="View Tulip Necklace">
+          <a class="photo-link" href="images/asquare-02.jpg" aria-label="View Tulip Necklace">
             <img src="images/asquare-02.jpg" alt="Tulip Necklace" loading="lazy">
           </a>
           <div class="product-info">
@@ -134,7 +110,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-03.jpg" target="_blank" aria-label="View Heart Double Layered Necklace">
+          <a class="photo-link" href="images/asquare-03.jpg" aria-label="View Heart Double Layered Necklace">
             <img src="images/asquare-03.jpg" alt="Heart Double Layered Necklace" loading="lazy">
           </a>
           <div class="product-info">
@@ -144,7 +120,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-04.jpg" target="_blank" aria-label="View Teddy Necklace">
+          <a class="photo-link" href="images/asquare-04.jpg" aria-label="View Teddy Necklace">
             <img src="images/asquare-04.jpg" alt="Teddy Necklace" loading="lazy">
           </a>
           <div class="product-info">
@@ -154,7 +130,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-05.jpg" target="_blank" aria-label="View Peace Charm Necklace">
+          <a class="photo-link" href="images/asquare-05.jpg" aria-label="View Peace Charm Necklace">
             <img src="images/asquare-05.jpg" alt="Peace Charm Necklace" loading="lazy">
           </a>
           <div class="product-info">
@@ -164,7 +140,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-06.jpg" target="_blank" aria-label="View Black Charm Necklace">
+          <a class="photo-link" href="images/asquare-06.jpg" aria-label="View Black Charm Necklace">
             <img src="images/asquare-06.jpg" alt="Black Charm Necklace" loading="lazy">
           </a>
           <div class="product-info">
@@ -174,7 +150,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-07.jpg" target="_blank" aria-label="View Pearl Charm Necklace">
+          <a class="photo-link" href="images/asquare-07.jpg" aria-label="View Pearl Charm Necklace">
             <img src="images/asquare-07.jpg" alt="Pearl Charm Necklace" loading="lazy">
           </a>
           <div class="product-info">
@@ -184,7 +160,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-08.jpg" target="_blank" aria-label="View Emerald Necklace">
+          <a class="photo-link" href="images/asquare-08.jpg" aria-label="View Emerald Necklace">
             <img src="images/asquare-08.jpg" alt="Emerald Necklace" loading="lazy">
           </a>
           <div class="product-info">
@@ -194,7 +170,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-09.jpg" target="_blank" aria-label="View Heart Spell Necklace Set">
+          <a class="photo-link" href="images/asquare-09.jpg" aria-label="View Heart Spell Necklace Set">
             <img src="images/asquare-09.jpg" alt="Heart Spell Necklace Set" loading="lazy">
           </a>
           <div class="product-info">
@@ -207,7 +183,7 @@ document.addEventListener('keydown', function(e) {
       <div class="section-heading"><span>THE ASQUARE EDIT</span><h2>Earrings</h2><p>Discover your favourite pieces. Enquire on WhatsApp for price and availability.</p></div>
       <div class="product-grid">
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-10.jpg" target="_blank" aria-label="View White Clover Drop Earrings">
+          <a class="photo-link" href="images/asquare-10.jpg" aria-label="View White Clover Drop Earrings">
             <img src="images/asquare-10.jpg" alt="White Clover Drop Earrings" loading="lazy">
           </a>
           <div class="product-info">
@@ -217,7 +193,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-11.jpg" target="_blank" aria-label="View Twisted Round Hoops">
+          <a class="photo-link" href="images/asquare-11.jpg" aria-label="View Twisted Round Hoops">
             <img src="images/asquare-11.jpg" alt="Twisted Round Hoops" loading="lazy">
           </a>
           <div class="product-info">
@@ -227,7 +203,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-12.jpg" target="_blank" aria-label="View Textured U-Shaped Hoops">
+          <a class="photo-link" href="images/asquare-12.jpg" aria-label="View Textured U-Shaped Hoops">
             <img src="images/asquare-12.jpg" alt="Textured U-Shaped Hoops" loading="lazy">
           </a>
           <div class="product-info">
@@ -237,7 +213,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-13.jpg" target="_blank" aria-label="View Golden Angular Hoops">
+          <a class="photo-link" href="images/asquare-13.jpg" aria-label="View Golden Angular Hoops">
             <img src="images/asquare-13.jpg" alt="Golden Angular Hoops" loading="lazy">
           </a>
           <div class="product-info">
@@ -247,7 +223,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-14.jpg" target="_blank" aria-label="View Shell Earrings">
+          <a class="photo-link" href="images/asquare-14.jpg" aria-label="View Shell Earrings">
             <img src="images/asquare-14.jpg" alt="Shell Earrings" loading="lazy">
           </a>
           <div class="product-info">
@@ -257,7 +233,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-15.jpg" target="_blank" aria-label="View Crystal Knot Earrings">
+          <a class="photo-link" href="images/asquare-15.jpg" aria-label="View Crystal Knot Earrings">
             <img src="images/asquare-15.jpg" alt="Crystal Knot Earrings" loading="lazy">
           </a>
           <div class="product-info">
@@ -267,7 +243,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-16.jpg" target="_blank" aria-label="View Round Spiralled Studs">
+          <a class="photo-link" href="images/asquare-16.jpg" aria-label="View Round Spiralled Studs">
             <img src="images/asquare-16.jpg" alt="Round Spiralled Studs" loading="lazy">
           </a>
           <div class="product-info">
@@ -277,7 +253,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-17.jpg" target="_blank" aria-label="View Molten Muse Earrings">
+          <a class="photo-link" href="images/asquare-17.jpg" aria-label="View Molten Muse Earrings">
             <img src="images/asquare-17.jpg" alt="Molten Muse Earrings" loading="lazy">
           </a>
           <div class="product-info">
@@ -287,7 +263,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-18.jpg" target="_blank" aria-label="View Chunky Wavy Earrings">
+          <a class="photo-link" href="images/asquare-18.jpg" aria-label="View Chunky Wavy Earrings">
             <img src="images/asquare-18.jpg" alt="Chunky Wavy Earrings" loading="lazy">
           </a>
           <div class="product-info">
@@ -300,7 +276,7 @@ document.addEventListener('keydown', function(e) {
       <div class="section-heading"><span>THE ASQUARE EDIT</span><h2>Kashmiri Collection</h2><p>Discover your favourite pieces. Enquire on WhatsApp for price and availability.</p></div>
       <div class="product-grid">
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-19.jpg" target="_blank" aria-label="View Royal Haathi Jhumkas">
+          <a class="photo-link" href="images/asquare-19.jpg" aria-label="View Royal Haathi Jhumkas">
             <img src="images/asquare-19.jpg" alt="Royal Haathi Jhumkas" loading="lazy">
           </a>
           <div class="product-info">
@@ -310,7 +286,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-20.jpg" target="_blank" aria-label="View Black Stone Kashmiri Earrings">
+          <a class="photo-link" href="images/asquare-20.jpg" aria-label="View Black Stone Kashmiri Earrings">
             <img src="images/asquare-20.jpg" alt="Black Stone Kashmiri Earrings" loading="lazy">
           </a>
           <div class="product-info">
@@ -320,7 +296,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-21.jpg" target="_blank" aria-label="View Maroon Ruby Kashmiri Earrings">
+          <a class="photo-link" href="images/asquare-21.jpg" aria-label="View Maroon Ruby Kashmiri Earrings">
             <img src="images/asquare-21.jpg" alt="Maroon Ruby Kashmiri Earrings" loading="lazy">
           </a>
           <div class="product-info">
@@ -330,7 +306,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-22.jpg" target="_blank" aria-label="View Emerald Kashmiri Earrings">
+          <a class="photo-link" href="images/asquare-22.jpg" aria-label="View Emerald Kashmiri Earrings">
             <img src="images/asquare-22.jpg" alt="Emerald Kashmiri Earrings" loading="lazy">
           </a>
           <div class="product-info">
@@ -340,7 +316,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-23.jpg" target="_blank" aria-label="View Chandbali Kashmiri Earrings">
+          <a class="photo-link" href="images/asquare-23.jpg" aria-label="View Chandbali Kashmiri Earrings">
             <img src="images/asquare-23.jpg" alt="Chandbali Kashmiri Earrings" loading="lazy">
           </a>
           <div class="product-info">
@@ -353,7 +329,7 @@ document.addEventListener('keydown', function(e) {
       <div class="section-heading"><span>THE ASQUARE EDIT</span><h2>Bracelets</h2><p>Discover your favourite pieces. Enquire on WhatsApp for price and availability.</p></div>
       <div class="product-grid">
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-24.jpg" target="_blank" aria-label="View Magnetic Flower Kada">
+          <a class="photo-link" href="images/asquare-24.jpg" aria-label="View Magnetic Flower Kada">
             <img src="images/asquare-24.jpg" alt="Magnetic Flower Kada" loading="lazy">
           </a>
           <div class="product-info">
@@ -363,7 +339,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-25.jpg" target="_blank" aria-label="View Black Bamboo Kada">
+          <a class="photo-link" href="images/asquare-25.jpg" aria-label="View Black Bamboo Kada">
             <img src="images/asquare-25.jpg" alt="Black Bamboo Kada" loading="lazy">
           </a>
           <div class="product-info">
@@ -373,7 +349,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-26.jpg" target="_blank" aria-label="View Tulip Bracelet">
+          <a class="photo-link" href="images/asquare-26.jpg" aria-label="View Tulip Bracelet">
             <img src="images/asquare-26.jpg" alt="Tulip Bracelet" loading="lazy">
           </a>
           <div class="product-info">
@@ -383,7 +359,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-27.png" target="_blank" aria-label="View Cartier Bracelet">
+          <a class="photo-link" href="images/asquare-27.png" aria-label="View Cartier Bracelet">
             <img src="images/asquare-27.png" alt="Cartier Bracelet" loading="lazy">
           </a>
           <div class="product-info">
@@ -396,7 +372,7 @@ document.addEventListener('keydown', function(e) {
       <div class="section-heading"><span>THE ASQUARE EDIT</span><h2>Rings</h2><p>Discover your favourite pieces. Enquire on WhatsApp for price and availability.</p></div>
       <div class="product-grid">
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-28.jpg" target="_blank" aria-label="View Marquise Crystal Ring">
+          <a class="photo-link" href="images/asquare-28.jpg" aria-label="View Marquise Crystal Ring">
             <img src="images/asquare-28.jpg" alt="Marquise Crystal Ring" loading="lazy">
           </a>
           <div class="product-info">
@@ -406,7 +382,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-29.jpg" target="_blank" aria-label="View Crystal Muse Ring">
+          <a class="photo-link" href="images/asquare-29.jpg" aria-label="View Crystal Muse Ring">
             <img src="images/asquare-29.jpg" alt="Crystal Muse Ring" loading="lazy">
           </a>
           <div class="product-info">
@@ -416,7 +392,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-30.jpg" target="_blank" aria-label="View Floral Adjustable Ring">
+          <a class="photo-link" href="images/asquare-30.jpg" aria-label="View Floral Adjustable Ring">
             <img src="images/asquare-30.jpg" alt="Floral Adjustable Ring" loading="lazy">
           </a>
           <div class="product-info">
@@ -426,7 +402,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-31.jpg" target="_blank" aria-label="View Twisted Knot Ring">
+          <a class="photo-link" href="images/asquare-31.jpg" aria-label="View Twisted Knot Ring">
             <img src="images/asquare-31.jpg" alt="Twisted Knot Ring" loading="lazy">
           </a>
           <div class="product-info">
@@ -436,7 +412,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-32.jpg" target="_blank" aria-label="View Shell Textured Ring">
+          <a class="photo-link" href="images/asquare-32.jpg" aria-label="View Shell Textured Ring">
             <img src="images/asquare-32.jpg" alt="Shell Textured Ring" loading="lazy">
           </a>
           <div class="product-info">
@@ -449,7 +425,7 @@ document.addEventListener('keydown', function(e) {
       <div class="section-heading"><span>THE ASQUARE EDIT</span><h2>Serpent Watches</h2><p>Discover your favourite pieces. Enquire on WhatsApp for price and availability.</p></div>
       <div class="product-grid">
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-33.jpg" target="_blank" aria-label="View Quartz Emerald serpent watch">
+          <a class="photo-link" href="images/asquare-33.jpg" aria-label="View Quartz Emerald serpent watch">
             <img src="images/asquare-33.jpg" alt="Quartz Emerald serpent watch" loading="lazy">
           </a>
           <div class="product-info">
@@ -459,7 +435,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </article>
         <article class="product-card">
-          <a class="photo-link" href="images/asquare-34.jpg" target="_blank" aria-label="View Quartz Gold serpent watch">
+          <a class="photo-link" href="images/asquare-34.jpg" aria-label="View Quartz Gold serpent watch">
             <img src="images/asquare-34.jpg" alt="Quartz Gold serpent watch" loading="lazy">
           </a>
           <div class="product-info">
@@ -478,33 +454,88 @@ document.getElementById('openMenu').addEventListener('click',()=>{drawer.classLi
 document.getElementById('closeMenu').addEventListener('click',closeDrawer);overlay.addEventListener('click',closeDrawer);
 drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeDrawer));
 </script>
- <style>
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.9);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.lightbox.active {
-  display: flex;
-}
-.lightbox img {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
-}
-.lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  color: white;
-  font-size: 35px;
-  background: none;
-  border: 0;
-}
- </style>     
+
+<div class="qv-backdrop" id="asquareQuickView" aria-hidden="true">
+  <section class="qv-modal" role="dialog" aria-modal="true" aria-labelledby="qvTitle">
+    <button class="qv-close" type="button" id="qvClose" aria-label="Close product details">×</button>
+    <div class="qv-gallery">
+      <div class="qv-main-image-wrap"><img class="qv-main-image" id="qvImage" src="" alt=""></div>
+      <p class="qv-gallery-note">Tap the image to zoom · ASQUARE</p>
+    </div>
+    <div class="qv-content">
+      <h2 class="qv-title" id="qvTitle"></h2>
+      <p class="qv-price" id="qvPrice"></p>
+      <a class="qv-wa" id="qvWhatsApp" href="#" target="_blank" rel="noopener">☏ &nbsp; Check availability on WhatsApp</a>
+      <div class="qv-highlights" id="qvHighlights"></div>
+      <div class="qv-rule"></div>
+      <div class="qv-accordion">
+        <details open><summary>Product Details</summary><p id="qvDetails">For material, size, finish and other product-specific details, please message us on WhatsApp.</p></details>
+        <details><summary>Jewellery Care</summary>
+          <div class="qv-care-grid">
+            <div class="qv-care-item"><b>♧</b>Keep away from water &amp; moisture</div>
+            <div class="qv-care-item"><b>☾</b>Remove when sleeping</div>
+            <div class="qv-care-item"><b>♧</b>Let perfume &amp; lotion dry before wearing</div>
+            <div class="qv-care-item"><b>♨</b>Remove before bathing or swimming</div>
+            <div class="qv-care-item"><b>⌁</b>Remove before exercising</div>
+            <div class="qv-care-item"><b>♧</b>Store in a dry pouch or jewellery box</div>
+          </div>
+        </details>
+        <details><summary>Returns &amp; Exchanges</summary><p>Please contact ASQUARE on WhatsApp before ordering for the current returns and exchange information.</p></details>
+        <details><summary>Need Help?</summary><p>Have a question about this piece? Message us on WhatsApp and mention the product name. We’ll be happy to help.</p></details>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+
+// ASQUARE product quick-view: intercept product photo taps without leaving the site.
+(function(){
+  const backdrop=document.getElementById('asquareQuickView');
+  if(!backdrop) return;
+  const image=document.getElementById('qvImage');
+  const title=document.getElementById('qvTitle');
+  const price=document.getElementById('qvPrice');
+  const wa=document.getElementById('qvWhatsApp');
+  const highlights=document.getElementById('qvHighlights');
+  const details=document.getElementById('qvDetails');
+  let previousFocus=null;
+  function openQuickView(link){
+    const card=link.closest('.product-card');
+    if(!card) return;
+    const productName=card.querySelector('h3')?.textContent.trim() || link.querySelector('img')?.alt || 'ASQUARE jewellery';
+    const productImage=link.querySelector('img');
+    const section=link.closest('.collection-section');
+    const isKashmiri=section?.id==='kashmiri';
+    const productPrice=card.querySelector('.price')?.textContent.trim() || 'Price on enquiry';
+    title.textContent=productName;
+    price.textContent=productPrice;
+    image.src=productImage?.currentSrc || productImage?.src || link.href;
+    image.alt=productName;
+    image.classList.remove('is-zoomed');
+    details.textContent='For material, size, finish and other product-specific details, please message us on WhatsApp.';
+    const featureList=isKashmiri
+      ? [['✧','Traditional Kashmiri design'],['◇','Statement style'],['♡','Perfect for festive wear & gifting'],['✦','A thoughtfully selected ASQUARE piece']]
+      : [['◇','Anti-tarnish jewellery'],['✧','Elegant everyday style'],['♡','Perfect for everyday wear & gifting'],['✦','A thoughtfully selected ASQUARE piece']];
+    highlights.innerHTML=featureList.map(([symbol,label])=>'<div class="qv-highlight"><span>'+symbol+'</span><span>'+label+'</span></div>').join('');
+    const message='Hi ASQUARE! 💙 Is the '+productName+' available? Please share the price and more details.';
+    wa.href='https://wa.me/916301239070?text='+encodeURIComponent(message);
+    previousFocus=document.activeElement;
+    backdrop.classList.add('is-open');backdrop.setAttribute('aria-hidden','false');document.body.classList.add('qv-lock');
+    document.getElementById('qvClose').focus();
+  }
+  function closeQuickView(){
+    backdrop.classList.remove('is-open');backdrop.setAttribute('aria-hidden','true');document.body.classList.remove('qv-lock');
+    image.classList.remove('is-zoomed');if(previousFocus) previousFocus.focus();
+  }
+  document.addEventListener('click',function(event){
+    const link=event.target.closest('a.photo-link');
+    if(link){event.preventDefault();openQuickView(link);return;}
+    if(event.target===backdrop || event.target.closest('#qvClose')) closeQuickView();
+  });
+  image.addEventListener('click',()=>image.classList.toggle('is-zoomed'));
+  document.addEventListener('keydown',event=>{if(event.key==='Escape' && backdrop.classList.contains('is-open')) closeQuickView();});
+})();
+
+</script>
 </body></html>
